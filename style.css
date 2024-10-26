@@ -610,6 +610,16 @@ footer .copyright{
     margin: 15px;
   }
 
+  .pro img{
+    position: relative;
+    z-index: -10;
+    
+  }
+  .des {
+    position: relative;
+    z-index: -10;
+    
+  }
   #banner{
     height: 20vh;
   }
