@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "name": "Classic Shirt",
+      "price": 799,
+      "image": "images/shirt1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Formal Trousers",
+      "price": 1299,
+      "image": "images/trousers1.jpg"
+    }
+  ]
+  
