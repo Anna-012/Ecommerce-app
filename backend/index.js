@@ -1,13 +1,28 @@
-const express = require('express');
-const app = express();
-const path = require('path')
-const dirPath = path.join(__dirname, 'backend')
 require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const userRoutes = require('./routes/user.routes'); // correct path if needed
 
-app.get('/',(req,res)=>{
-    res.sendFile(dirPath + "./index.html")
-})
+const app = express();
+const PORT = 3000;
 
-app.listen (process.env.PORT, ()=>{
-    console.log("server is running on port 3000");
-})
+// Database connection
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error(err));
+
+// Middlewares
+app.use(express.json());
+app.use(express.static(__dirname)); // to serve HTML, CSS, JS etc.
+app.use('/user', userRoutes); // all user routes will be prefixed with /user
+
+// Serve homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
