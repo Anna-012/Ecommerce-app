@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const userRoutes = require('./routes/user.routes'); // correct path if needed
+const productRoutes = require('./routes/product.routes'); 
+const userRoutes = require('./routes/user.routes');
+
 
 const app = express();
 const PORT = 3000;
@@ -14,8 +16,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 // Middlewares
 app.use(express.json());
-app.use(express.static(__dirname)); // to serve HTML, CSS, JS etc.
-app.use('/user', userRoutes); // all user routes will be prefixed with /user
+app.use(express.static(__dirname));
+app.use('/user', userRoutes);
+app.use('/products', productRoutes);// 💡 This is the fix
 
 // Serve homepage
 app.get('/', (req, res) => {
