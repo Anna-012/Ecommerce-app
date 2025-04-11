@@ -4,23 +4,17 @@ const Product = require("../model/product.model");
 // ✅ Add new product
 router.post('/', async (req, res) => {
   try {
-    const { name, description, price, category, imageUrl, sellerId, stock } = req.body;
+    // const { name, description, price, category, imageUrl, sellerId, stock } = req.body;
 
     // Validate required fields
-    if (!name || !price || !sellerId) {
-      return res.status(400).json({ message: 'Name, price, and sellerId are required' });
-    }
+    // if (!name || !price || !sellerId) {
+    //   return res.status(400).json({ message: 'Name, price, and sellerId are required' });
+    // }
 
     // Create new product
-    const newProduct = new Product({
-      name,
-      description,
-      price,
-      category,
-      imageUrl,
-      seller: sellerId,
-      stock
-    });
+    const newProduct = new Product(
+      req.body
+    );
 
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);

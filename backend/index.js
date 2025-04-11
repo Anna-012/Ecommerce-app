@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const cartRoutes = require('./routes/cart.routes');
 const productRoutes = require('./routes/product.routes'); 
 const userRoutes = require('./routes/user.routes');
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.static(__dirname));
 app.use('/user', userRoutes);
 app.use('/products', productRoutes);// 💡 This is the fix
+app.use('/cart', cartRoutes); // /cart/add
 
 // Serve homepage
 app.get('/', (req, res) => {
